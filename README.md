@@ -169,3 +169,44 @@ onAddPost(postInput: HTMLInputElement){
 - finally add **FormsModule** to the _imports_ array in _app module_.
 
 ---
+
+## installing angular material
+
+### create a form using angular material
+
+(Angular Material)[https://material.angular.io/guide/getting-started]
+
+(Angular Component)[https://material.angular.io/components/categories]
+
+```html
+<div class="container">
+  <mat-card>
+    <h3>Add Posts</h3>
+    <mat-form-field class="example-form-field">
+      <textarea
+        rows="5"
+        matInput
+        [(ngModel)]="postValue"
+      ></textarea></mat-form-field
+    ><br />
+    <button mat-raised-button color="primary" (click)="onAddPost()">
+      Add Post
+    </button>
+    <br />
+
+    <p>{{ newPost }}</p>
+  </mat-card>
+</div>
+```
+
+**app.module.ts**
+
+```typescript
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+
+imports: [MatInputModule, MatButtonModule, MatCardModule];
+```
+
+---
