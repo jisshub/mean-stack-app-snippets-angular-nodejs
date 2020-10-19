@@ -40,12 +40,46 @@ platformBrowserDynamic()
 ng g c posts/post-create
 ```
 
-- above command will create a _posts_ folder - then _post-create_ component with in the _posts_ folder.
+- above command will create a _posts_ folder - then add _post-create_ component with in the _posts_ folder.
 
   final output will be like this:
 
 ![image](./screenshots/screen-3.jpg 'image')
 
 - here v create _post-create_ component in posts folder.
+
+- add contents in post-create template file
+
+- add the post-create selector in app component.html
+
+```html
+<h1>Our First App</h1>
+<app-post-create></app-post-create>
+```
+
+- thus the content in post-create component will be rendered in app component template.
+
+---
+
+## Listening to events
+
+> event binding means a feature that allows angular to listen to events made by users.
+> here v add input and clicking on button angular listen to that click event and execute some function there.
+
+**post-create-component.html**
+
+```html
+<button (click)="onAddPost()">Save post</button>
+```
+
+**post-create-component.ts**
+
+```typescript
+ onAddPost(){
+    alert("post added");
+  }
+```
+
+- binding click event on button. while click, the assigned method is fired.
 
 ---
