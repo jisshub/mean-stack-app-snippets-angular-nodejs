@@ -210,3 +210,46 @@ imports: [MatInputModule, MatButtonModule, MatCardModule];
 ```
 
 ---
+
+## adding toolbar
+
+> to add header to the page.
+> create header component in post component.
+
+```bash
+ng g component posts/header --skipTests=true
+```
+
+> import MatToolbar Module in app module
+> add same in imports array.
+
+(Angular Toolbar)[https://material.angular.io/components/toolbar/overview]
+
+**header.component.html**
+
+```html
+<p>
+  <mat-toolbar color="primary">
+    <span>My Application</span>
+  </mat-toolbar>
+</p>
+```
+
+---
+
+## outputting posts using Expansion Panel Component.
+
+> create post-list component in posts component
+
+```bash
+ng g component posts.post-list --skipTests=true
+```
+
+> add post-list in component app component template
+> using _Expansion panel_ to output the post.
+> import MatExpansion Module -add to imports array.
+
+### populating the expansion panel with contents
+
+#### structural directive
+
