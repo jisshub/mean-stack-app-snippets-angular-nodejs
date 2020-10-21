@@ -385,3 +385,29 @@ constructor() { }
 ```
 
 ---
+
+> next loop throush the posts array
+
+**post-list.component.ts**
+
+```typescript
+  // make posts property bindable from outside thru property binding
+  @Input() posts: Array<Object> = [];
+
+```
+**post-list.component.html**
+
+```html
+<mat-accordion *ngIf="posts.length > 0">
+    <mat-expansion-panel hideToggle *ngFor="let post of posts">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{post.title}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>{{post.content}}</p>
+    </mat-expansion-panel>
+
+</mat-accordion>
+<p class="mat-body-1 info-text" *ngIf="posts.length <= 0">No posts added yet</p>
+```
