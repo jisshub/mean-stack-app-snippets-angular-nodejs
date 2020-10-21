@@ -344,7 +344,7 @@ constructor() { }
 
 ```typescript
  // empty array
-  posts:Array<Object> = [];
+  storedPosts:Array<Object> = [];
   // define function, get post
   onPostAdded(post: Object){
     // push the received post object to posts Array
