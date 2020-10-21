@@ -385,3 +385,6 @@ constructor() { }
 ```
 
 ---
+
+## Creating Post Model
+ 
