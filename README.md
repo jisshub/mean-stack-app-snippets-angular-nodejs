@@ -387,4 +387,57 @@ constructor() { }
 ---
 
 ## Creating Post Model
- 
+
+- create post model in posts folder.
+
+```bash
+ng generate class posts/post --type=model
+```
+
+- later declare fields in the model.
+
+```typescript
+export class Post {
+  title: string;
+  content: string;
+}
+```
+
+- now v can use this **Post class** in components.
+
+**app.component.ts**
+
+```typescript
+  // empty array
+  storedPosts:Post[] = [];
+```
+
+- storedArray is an array of type Post.
+
+**post-create.component.ts**
+
+```typescript
+@Output() postEvent = new EventEmitter<Post>();
+onAddPost(){
+    // create post object to store title and content
+    const post: Post = {title: this.postTitle, content: this.postContent};
+    // emit the post object
+    this.postEvent.emit(post);
+  }
+```
+
+- data v emit is of type **Post** by setting generic type to event emitter.
+- _post_ object is of type **Post** class.
+
+---
+
+**post-list.component.ts**
+
+```typescript
+@Input() posts: Post[] = [];
+
+```
+
+- here posts property accept only Post array type data.
+
+---
