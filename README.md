@@ -509,3 +509,6 @@ onAddPost(){
 - this form creation is done by _template driven approach_.
 
 ---
+
+## getting post from post-create component to post-list component
+
