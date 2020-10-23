@@ -441,3 +441,71 @@ onAddPost(){
 - here posts property accept only Post array type data.
 
 ---
+
+## adding forms
+
+> add _ngModel_ directive to the each inputs.
+> thus it register the inputs as a control to the forms.
+> but have to add _name_ attribute for the inputs since angular needs to know how to name the input.
+> change button type to submit. while submitting, it triggers an event _submit_ that v can listen to.
+> add _submit_ event to the form. assign the method to it.
+
+```html
+<form (submit)="onAddPost()">
+  <mat-form-field>
+    <input
+      matInput
+      type="text"
+      placeholder="Title goes Here"
+      ngModel
+      name="title"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <textarea
+      rows="5"
+      matInput
+      ngModel
+      placeholder="content goes here"
+      name="content"
+    ></textarea>
+  </mat-form-field>
+  <br />
+  <button mat-raised-button color="primary" type="submit">Add Post</button>
+  <br />
+</form>
+```
+
+- now need to get access to values in the form.
+  > For that purpose, v set a **local reference** in the form element- assign ngForm directive to the **local reference** as string - pass that **local reference** as an argument to the method.
+  - by doing this, v get access to form object and its values.
+
+---
+
+## adding validations to the form
+
+- use _required_ attribute on each inputs.
+- can also use _min-length_ attribute as well.
+- displaying error message using _mat-error_ component of material.
+
+**post-create.component.html**
+
+```html
+<input
+  matInput
+  type="text"
+  placeholder="Title goes Here"
+  ngModel
+  name="title"
+  required
+  minlength="5"
+  #title="ngModel"
+/>
+<mat-error *ngIf="title.invalid">Please give valid title</mat-error>
+```
+
+- give both the inputs a _local reference_. thus can use in the _ngIf_.
+
+- this form creation is done by _template driven approach_.
+
+---
