@@ -512,3 +512,42 @@ onAddPost(){
 
 ## getting post from post-create component to post-list component
 
+- here v user services.
+- create a service class in posts folder.
+
+```bash
+ng generate service posts/post --skipTests=true
+```
+
+> create a posts array of type Post.
+> get posts and later add posts to the post array.
+
+**post.service.ts**
+
+```typescript
+export class PostService {
+  constructor() {}
+  // create a private property of type Post array
+  private posts: Post[] = [];
+  getPosts() {
+    // return copy of post array, use spread operator, so changes only affected on its copy, not the original array
+    return [...this.posts];
+  }
+
+  // adding new post
+  addPost(post: Post) {
+    this.posts.push(post);
+  }
+}
+```
+
+- next v have to inject the instance of this service class to needed component. called dependency injection
+
+- for that add a constructor in component > define an a public property of type **PostService** type.
+
+- that property will store incoming value of PostService.
+
+-
+
+---
+
