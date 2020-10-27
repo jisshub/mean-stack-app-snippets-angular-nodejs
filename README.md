@@ -550,4 +550,7 @@ export class PostService {
 -
 
 ---
+## Calling GET post
+
+
 
