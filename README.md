@@ -512,7 +512,7 @@ onAddPost(){
 
 ## getting post from post-create component to post-list component
 
-- here v user services.
+- here v use _services_.
 - create a service class in posts folder.
 
 ```bash
@@ -533,7 +533,6 @@ export class PostService {
     // return copy of post array, use spread operator, so changes only affected on its copy, not the original array
     return [...this.posts];
   }
-
   // adding new post
   addPost(post: Post) {
     this.posts.push(post);
@@ -547,10 +546,34 @@ export class PostService {
 
 - that property will store incoming value of PostService.
 
--
-
 ---
+
 ## Calling GET post
 
+> add OnInIt interface on component.
+> later define _ngOnInIt_ method - call the _getPosts_ method on postService property.
 
+**post-list.component.ts**
 
+```typescript
+  ngOnInit(): void {
+    // call get post method here
+    this.postService.getPosts();
+}
+```
+
+also do the same in **post-create component** for creating post as well.
+
+- inject _service_ to the constructor.
+
+```typescript
+constructor(public postService: PostService) { }
+  onAddPost(form: NgForm){
+    // create post object to store title and content
+    const post: Post = {title: form.value.title, content: form.value.postContent};
+    // emit the post object
+    this.postService.addPost(post);
+  }
+```
+
+---
