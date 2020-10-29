@@ -579,6 +579,75 @@ constructor(public postService: PostService) { }
 > here the after entering inputs posts wont be listed,
 > since v fetched the post before adding them.
 > to solve it, first remove the bindings in app component.
+> next use rxjs package.
+> import **Subject** from rxjs package.
+> create new instance of Subject.
+> call next on that subject instance - pass the post array copy.
+
+**post.service.ts**
+
+```typescript
+private postUpdated = new Subject<Post[]>();
+
+  // adding new post
+  addPost(post: Post){
+    this.posts.push(post);
+    // call next() on subject - pass copy of posts array as argument.
+    this.postUpdated.next([...this.posts]);
+  }
+```
+
+> next u have to listen to that subject whenever it emits a post.
+> create new method - call _asObservable()_ on subject and return it.
+> it will return an object that v can listen to.
+
+```typescript
+
+  getPostUpdateListener(){
+    // call asObservable method on postUpdated. which in turn returns an object.
+    return this.postUpdated.asObservable();
+  }
+```
+
+> next v have to subscribe to this listener object from post-list component call **subscribe()**.
+> subscribe takes a function as an argument which will b called when new data is emitted.
+
+**post-list.component.ts**
+
+```typescript
+  ngOnInit(): void {
+    // call get post method here
+    this.posts = this.postService.getPosts();
+    this.postService.getPostUpdateListener()
+    .subscribe((post: Post[]) => {
+      // set posts property with post array received.
+      this.posts = post;
+    });
+
+  }
+```
+
+> next have to store the subscription in a property.
+> finally unsubscribe the subscription. implement _OnDestroy_ method.
+
+**post-list.component.ts**
+
+```typescript
+
+  private postSub: Subscription;
+  ngOnInit(): void {
+    // call get post method here
+    this.posts = this.postService.getPosts();
+    this.postSub = this.postService.getPostUpdateListener()
+    .subscribe((post: Post[]) => {
+      // set posts property with post array received.
+      this.posts = post;
+    });
+  }
+  ngOnDestroy(){
+    // unsubscribe
+      this.postSub.unsubscribe()
+  }
 
 ---
-
+```
