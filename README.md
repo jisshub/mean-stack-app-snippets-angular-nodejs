@@ -649,5 +649,6 @@ private postUpdated = new Subject<Post[]>();
       this.postSub.unsubscribe()
   }
 
----
 ```
+
+---
