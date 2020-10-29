@@ -576,4 +576,9 @@ constructor(public postService: PostService) { }
   }
 ```
 
+> here the after entering inputs posts wont be listed,
+> since v fetched the post before adding them.
+> to solve it, first remove the bindings in app component.
+
 ---
+
