@@ -652,3 +652,40 @@ private postUpdated = new Subject<Post[]>();
 ```
 
 ---
+
+## Observables, Observers, Subscriptions
+
+> observer subscribes to the observable, simply means they establishes the subscription.
+> 3 methods in observer,
+
+1. next()
+2. error()
+3. complete()
+
+> v call next() on subject, subject is an observable.
+> v invoke error() on observable when needed to throw some error.
+> can call complete() on observable when no more data left to be emitted.
+
+**Screenshot**
+![Image](./screenshots/screen-4.jpg)
+
+### Example
+
+- An observable wraps a callback of http request.
+- wraps an _http request_ with in an observable
+  that takes that callback and whenever the request gives us the response, v use the observable to emit response data by invoking _next()_. or error message if error pops up. v can also complete the observable once got response by calling _complete()_. this how v manage _http request_ in observable.
+
+**Screenshot**
+![Image](./screenshots/screen-5.jpg)
+
+### Subject
+
+> a _subject_ is a kind of observable.
+> normal observable is passive. eg: wraps callback, emitting events
+> subject is active observable. v also subcribe to the subject, but here v call _next()_ manually.
+> for example, when v add a new post, v actively can notify our entire application. it can be done with _subject_.
+
+**Screenshot**
+![Image](./screenshots/screen-6.jpg)
+
+---
