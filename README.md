@@ -688,4 +688,15 @@ private postUpdated = new Subject<Post[]>();
 **Screenshot**
 ![Image](./screenshots/screen-6.jpg)
 
+> consider observables/subjects as a stream of values/data.
+> and these values r emitted over time.
+
+> observer - have set of functions we can call,
+
+1. next() - call next() for emitting a normal value, also call if v hav an observable that wraps an http request.
+2. error()
+3. complete() - call complete() when an observable ends emitting values.
+
+> this is how observables work.
+
 ---
