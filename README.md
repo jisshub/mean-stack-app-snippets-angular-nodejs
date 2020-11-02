@@ -700,3 +700,10 @@ private postUpdated = new Subject<Post[]>();
 > this is how observables work.
 
 ---
+
+## working on forms
+
+- resetting the form on submit.
+- adding edit and delete button on expansion panel. use **Action Bar** in expansion panel.
+
+
