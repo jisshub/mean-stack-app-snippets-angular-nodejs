@@ -161,3 +161,55 @@ node server.js
 ```
 
 ---
+
+## fetching Initial Posts
+
+- fetch posts when client sends a request.
+- v use rest api _/api/posts_.
+
+**server.js**
+
+```javascript
+// set api
+app.use('/api/posts', (req, res, next) => {
+  const posts = [
+    {
+      id: 'post10101',
+      title: 'This is first title',
+      content: 'This is second content',
+    },
+    {
+      id: 'post10111',
+      title: 'This is second title',
+      content: 'This is third content',
+    },
+  ];
+  // send the response as json - set status as 200 means success
+  res.status(200).json({ message: 'post fetched successfully', posts });
+});
+```
+
+---
+
+## using angular http client
+
+- Send request to fetch the posts. store the posts in post variable.
+- In _getPosts()_ method, v send an http request.
+- first have to import _HttpClientModule_ from
+  http module. add to imports array.
+- inject _HttpClient_ module to _post service_.
+- send the **GET** request.
+
+```javascript
+getPosts(){
+    // return copy of post array, use spread operator, so changes only affected on its copy,
+    // not the original array
+    this.http.get('http://localhost:3000/api/posts');
+    return [...this.posts];
+  }
+```
+
+- angular http client uses _observables_.
+- but this observable didn't send request unless u listen to it.
+- to listen to it, v *subscribe*      
+---
