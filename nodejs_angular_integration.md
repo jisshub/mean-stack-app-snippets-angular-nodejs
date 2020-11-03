@@ -108,4 +108,56 @@ server.listen(PORT, () => {
 
 ## adding the express framework
 
+- a nodejs framework.
 
+```bash
+npm i express
+```
+
+- add express app and all files belonging to it to _backend_ folder.
+
+**app.js**
+
+```javascript
+const express = require('express');
+
+// initialize express app
+const app = express();
+
+// use express router - create a middleware
+app.use((req, res, next) => {
+  console.log('First Middleware');
+  next(); // movie to next middleware
+});
+
+// second middleware
+app.use((req, res, next) => {
+  res.send('hello from express app');
+});
+
+// export the app
+module.exports = app;
+```
+
+**server.js**
+
+```javascript
+const http = require('http');
+// import the express app exported
+const app = require('./backend/app');
+
+// make server listen to a port number
+const PORT = process.env.PORT || 3000;
+// set port for the app
+app.set('port', PORT);
+// create server and store it
+const server = http.createServer(app);
+// listen to a port
+server.listen(PORT);
+```
+
+```bash
+node server.js
+```
+
+---
