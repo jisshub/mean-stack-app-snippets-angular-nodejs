@@ -196,20 +196,50 @@ app.use('/api/posts', (req, res, next) => {
 - Send request to fetch the posts. store the posts in post variable.
 - In _getPosts()_ method, v send an http request.
 - first have to import _HttpClientModule_ from
-  http module. add to imports array.
+  http module. later add the same to imports array.
+
+**app.module.ts**
+
+```typescript
+import { HttpClientModule } from '@angular/common/http';
+```
+
 - inject _HttpClient_ module to _post service_.
 - send the **GET** request.
 
-```javascript
-getPosts(){
+- angular http client uses _observables_.
+- but this observable didn't send request unless u listen to it.
+- to listen to it, v _subscribe_
+
+**post-service.ts**
+
+```typescript
+
+import { HttpClient } from '@angular/common/http';
+
+constructor(public http: HttpClient) { }
+
+ getPosts(){
     // return copy of post array, use spread operator, so changes only affected on its copy,
     // not the original array
-    this.http.get('http://localhost:3000/api/posts');
-    return [...this.posts];
+    this.http.get<{message: string, post: Post[]}>('http://localhost:3000/api/posts')
+      .subscribe((postData) => {
+        this.posts = postData.post;
+        this.postUpdated.next([...this.posts]);
+      })
   }
 ```
 
-- angular http client uses _observables_.
-- but this observable didn't send request unless u listen to it.
-- to listen to it, v *subscribe*      
+**post-create.component.ts**
+
+```typescript
+onAddPost(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+    this.postService.addPost(form.value.title, form.value.content);
+    form.resetForm();
+  }
+```
+
 ---
