@@ -243,3 +243,16 @@ onAddPost(form: NgForm) {
 ```
 
 ---
+
+## Understanding CORS
+
+### Cross-Origin-Resource-Sharing
+
+![image](./screenshots/screen-12.jpg 'image')
+
+- client & server communicates when they r in same host.
+
+- communication not possible if they r in different host. for eg, client in _localhost:3000_ and server in _localhost:4000_.
+  this causes CORS error.
+
+  
