@@ -255,4 +255,50 @@ onAddPost(form: NgForm) {
 - communication not possible if they r in different host. for eg, client in _localhost:3000_ and server in _localhost:4000_.
   this causes CORS error.
 
-  
+**app.js**
+
+```typescript
+// set header
+app.use((req, res, next) => {
+  // allow which domain to access the resources.
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  // only allow domains sending request with certain set of header.
+  res.setHeader(
+    'Access-Control-Allow-Header',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  // only allow domains sending request with a set of http methods.
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PUT, UPDATE, PATCH, OPTIONS'
+  );
+  next();
+});
+```
+
+---
+
+## Adding the post request, parsing json body
+
+**app.js**
+
+```typescript
+// Used to parse incoming JSON object
+app.use(express.json());
+
+// parse url encoded bodies
+app.use(express.urlencoded());
+
+// post request
+app.post('/api/posts', (req, res, next) => {
+  const post = req.body;
+  console.log(post);
+  return res.status(201).json({
+    message: 'Data Posted',
+    post,
+  });
+});
+```
+
+---
+
