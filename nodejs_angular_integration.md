@@ -302,3 +302,35 @@ app.post('/api/posts', (req, res, next) => {
 
 ---
 
+## Adding the Angular
+
+```typescript
+/**
+   *
+   * @param title : post title
+   * @param content : post content
+   */
+  addPost(title: string, content: string){
+    const post: Post = {id: null, title, content};
+    this.http.post<{message: string}>('http://localhost:3000/api/posts', post)
+        .subscribe((resData) => {
+          console.log(resData.message);
+          this.posts.push(post);
+          // call next() on subject - pass copy of posts array as argument.
+          this.postUpdated.next([...this.posts]);
+        });
+  }
+```
+
+---
+
+## adding the mongodb to store posts.
+
+### what is mongodb
+
+> a no sql database that stores _documents_ in _collections_.
+> in sql db, _records_ are stored in _tables_.
+
+- enforces no data schema or relations. so individual documents can be arranged based on our need.
+
+- can easily connect with node/express, bt not directly to angular.
