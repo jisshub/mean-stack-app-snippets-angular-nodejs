@@ -323,14 +323,3 @@ app.post('/api/posts', (req, res, next) => {
 ```
 
 ---
-
-## adding the mongodb to store posts.
-
-### what is mongodb
-
-> a no sql database that stores _documents_ in _collections_.
-> in sql db, _records_ are stored in _tables_.
-
-- enforces no data schema or relations. so individual documents can be arranged based on our need.
-
-- can easily connect with node/express, bt not directly to angular.
