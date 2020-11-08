@@ -1,0 +1,4 @@
+to serve angular app,
+> npm run
+to start node express server
+> npm run start:server
