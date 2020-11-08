@@ -83,7 +83,7 @@ module.exports = mongoose.model('post', postSchema);
 // can use this model outide this file.
 ```
 
-## storing posted data to db
+## creating instance of Post model
 
 - using post model to store data to db. bcause post model is a bridge from our nodejs express app to the mongodb database.
 
