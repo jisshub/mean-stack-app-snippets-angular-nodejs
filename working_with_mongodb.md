@@ -116,4 +116,60 @@ npm run start:server
 
 ## connecting node express app to mongodb
 
+**app.js**
+
+```typescript
+// require mongoose
+const mongoose = require('mongoose');
+
+// connect to mongodb database
+mongoose
+  .connect(
+    'mongodb+srv://jissmonJose:<password>@cluster101.wqs3s.mongodb.net/<dbname>?retryWrites=true&w=majority'
+  )
+  .then(() => {
+    console.log('Connected to Database!');
+  })
+  .catch(() => {
+    console.log('Connection Failed!');
+  });
+```
+
+- now thw connwction is ok, next lets save the data to the db.
+
 ---
+
+## storing data to db.
+
+- mongoose automartically creates a query to insert the data in to the db. thats what save() method does.
+
+**app.js**
+
+```javascript
+app.post('/api/posts', (req, res, next) => {
+  const post = new Post({
+    title: req.body.title,
+    content: req.body.content,
+  });
+  post.save();
+  console.log(post);
+  return res.status(201).json({
+    message: 'Data Posted',
+    post,
+  });
+});
+```
+
+- next overwrite the default db name in connection string.
+
+```javascript
+mongoose.connect(
+  'mongodb+srv://jissmonJose:<password>@cluster101.wqs3s.mongodb.net/node-angular?retryWrites=true&w=majority'
+);
+```
+
+- here _node-angular_ is the db where data gets stored.
+- will automatically creates a collection in node-angular database and stores the first document.
+
+---
+
