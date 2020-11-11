@@ -125,7 +125,7 @@ const mongoose = require('mongoose');
 // connect to mongodb database
 mongoose
   .connect(
-    'mongodb+srv://jissmonJose:<password>@cluster101.wqs3s.mongodb.net/<dbname>?retryWrites=true&w=majority'
+    'mongodb+srv://jissmonJose:YsX6ghrRid3aK9Fx@cluster101.wqs3s.mongodb.net/<dbname>?retryWrites=true&w=majority'
   )
   .then(() => {
     console.log('Connected to Database!');
@@ -164,7 +164,7 @@ app.post('/api/posts', (req, res, next) => {
 
 ```javascript
 mongoose.connect(
-  'mongodb+srv://jissmonJose:<password>@cluster101.wqs3s.mongodb.net/node-angular?retryWrites=true&w=majority'
+  'mongodb+srv://jissmonJose:YsX6ghrRid3aK9Fx@cluster101.wqs3s.mongodb.net/node-angular?retryWrites=true&w=majority'
 );
 ```
 
@@ -173,3 +173,28 @@ mongoose.connect(
 
 ---
 
+## fetching data from db
+
+- using _find()_ method to fetch the data from mongodb.
+
+**app.js**
+
+```typescript
+// fetch the post using get request
+app.get('/api/posts', (req, res, next) => {
+  Post.find().then((document) => {
+    // send the response as json - set status as 200 means success
+    res.status(200).json({ message: 'post fetched successfully' }, document);
+  });
+});
+```
+
+> just refresh the page, page loads data coming from database.
+
+---
+
+## transforming response dATA
+
+- changing _\_id_ to _id_.
+
+- 
