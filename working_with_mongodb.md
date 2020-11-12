@@ -195,6 +195,56 @@ app.get('/api/posts', (req, res, next) => {
 
 ## transforming response dATA
 
-- changing _\_id_ to _id_.
+- changing _\_id_ to _id_ of eah document.
 
-- 
+- use _map operator_ for this.
+
+- V call _map_ with in _pipe method_
+
+- Import _map_ from _rxjs/operators_ package.
+
+- _map_ allows to transform the elements in an array and
+  store them to new array.
+
+- map takes an arrow function, which takes post data
+  as argument.
+
+- In _map_, we returns post array after converting every elements based on our intended format. for that v use javascript method _map()_. In _map()_ v transform each element of the array.
+
+**post.service,ts**
+
+```typescript
+ getPosts(){
+    // return copy of post array, use spread operator, so changes only affected on its copy,
+    // not the original array
+    this.http.get<{message: string, posts: any}>('http://localhost:3000/api/posts')
+      .pipe(map((postData) => {
+        return postData.posts.map(post => {
+          return {
+             title: post.title,
+             content: post.content,
+             id: post._id
+          };
+        });
+      }))
+      .subscribe((postData) => {
+        this.posts = postData.posts;
+        console.log(this.posts);
+        this.postUpdated.next([...this.posts]);
+      });
+  }
+```
+
+## deleting documents
+
+- delete document using document id.
+
+- add a function to delete in click listener. pass post id as argument.
+
+- In _app.js_, set a delete route which takes document id as param. using id v delete that document.
+
+**post-list.component.html**
+
+```html
+<button mat-button color="accent" (click)="onDelete(post.id)">DELETE</button>
+```
