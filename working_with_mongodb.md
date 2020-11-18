@@ -251,3 +251,4 @@ app.get('/api/posts', (req, res, next) => {
 
 ## updating the frontend after deleting post
 
+---
