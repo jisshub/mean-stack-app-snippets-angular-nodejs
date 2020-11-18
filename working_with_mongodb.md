@@ -248,3 +248,6 @@ app.get('/api/posts', (req, res, next) => {
 ```html
 <button mat-button color="accent" (click)="onDelete(post.id)">DELETE</button>
 ```
+
+## updating the frontend after deleting post
+
