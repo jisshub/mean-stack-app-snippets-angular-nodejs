@@ -93,7 +93,7 @@ ng g c posts/post-create
   Eg:
 
 ```html
-<textarea name="post" id="post" cols="30" rows="5" [value]="newPost"></textarea>
+<textarea name="post" id="post" cols="30" rows="5" value ="newPost"></textarea>
 <p>{{ newPost }}</p>
 ```
 
