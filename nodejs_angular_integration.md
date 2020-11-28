@@ -189,10 +189,14 @@ app.use('/api/posts', (req, res, next) => {
 });
 ```
 
+> naivgate to browser, type
+
+localhost:3000/api/posts/
+
 ---
 
 ## using angular http client
-
+- used to connect angular app to express server.
 - Send request to fetch the posts. store the posts in post variable.
 - In _getPosts()_ method, v send an http request.
 - first have to import _HttpClientModule_ from
