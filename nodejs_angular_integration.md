@@ -202,6 +202,8 @@ localhost:3000/api/posts/
 - first have to import _HttpClientModule_ from
   http module. later add the same to imports array.
 
+more on: https://angular.io/guide/http
+
 **app.module.ts**
 
 ```typescript
