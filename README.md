@@ -94,9 +94,21 @@ ng g c posts/post-create
 - in property binding, binds the value to be outputted to the value property of html element.
   Eg:
 
+### using only string interpolation
+
+**post-create-component.html**
 ```html
-<textarea name="post" id="post" cols="30" rows="5" value ="newPost"></textarea>
-<p>{{ newPost }}</p>
+<textarea cols="30" rows="10"></textarea>
+<hr>
+<button (click)="onAddPost()">Submit</button>
+<p>{{firstPost}}</p>
+```
+
+**post-create-component.ts**
+```ts
+onAddPost(){
+  this.firstPost = 'The user\'s post' ;
+}
 ```
 
 ---
