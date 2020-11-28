@@ -183,26 +183,33 @@ onAddPost(postInput: HTMLInputElement){
 
 - use ngModel directive - assign a property.
 
+**post-create.compoentn.html**
 ```html
-<textarea
-  name="post"
-  id="post"
-  cols="30"
-  rows="5"
-  [(ngModel)]="postValue"
-></textarea
-><br /><br />
+<textarea cols="30" rows="10" [(ngModel)]="postInput"></textarea>
+<hr>
+<button (click)="onAddPost()">Submit</button>
+<p>{{firstPost}}</p>
+
+
 ```
 
 > here v get the value to _textArea_ element and output the value from _textArea_ at same time. earlier v do property binding to output the value. and do a local reference to get the value. by using ngModel directive, v get the value from user and output the value on template at same time.
 
+**post-create.compoentn.ts**
+
 ```typescript
-  postValue: string ="";
+export class PostsCreateComponent implements OnInit {
+
+  constructor() { }
+  postInput: string = '';
+  firstPost: string = '';
   ngOnInit(): void {
   }
-  onAddPost(){
-    this.newPost = this.postValue;
-  }
+onAddPost(){
+  this.firstPost = this.postInput;
+}
+}
+
 ```
 
 - declare _postValue_ property here, assign it to _newPost_.
