@@ -211,10 +211,11 @@ onAddPost(){
 }
 
 ```
+- Error: Can't bind to 'ngModel' since it isn't a known property of 'input'
 
-- declare _postValue_ property here, assign it to _newPost_.
-
-- finally add **FormsModule** to the _imports_ array in _app module_.
+Solution:
+------------
+Add **FormsModule** to the _imports_ array in _app module_.
 
 ---
 
