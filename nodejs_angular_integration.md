@@ -167,7 +167,7 @@ node server.js
 - fetch posts when client sends a request.
 - v use rest api _/api/posts_.
 
-**server.js**
+**app.js**
 
 ```javascript
 // set api
