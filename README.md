@@ -69,7 +69,9 @@ ng g c posts/post-create
 **post-create-component.html**
 
 ```html
-<button (click)="onAddPost()">Save post</button>
+<textarea cols="30" rows="10"></textarea>
+<hr>
+<button (click)="onAddPost()">Submit</button>
 ```
 
 **post-create-component.ts**
