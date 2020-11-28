@@ -196,7 +196,7 @@ localhost:3000/api/posts/
 ---
 
 ## using angular http client
-- used to connect angular app to express server.
+- used to connect angular app to backend services.
 - Send request to fetch the posts. store the posts in post variable.
 - In _getPosts()_ method, v send an http request.
 - first have to import _HttpClientModule_ from
