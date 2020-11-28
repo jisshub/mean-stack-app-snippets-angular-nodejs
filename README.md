@@ -111,6 +111,33 @@ onAddPost(){
 }
 ```
 
+### using property binding
+
+**post-create-component.html**
+
+```html
+<textarea cols="30" rows="10" [value]="firstPost"></textarea>
+<hr>
+<button (click)="onAddPost()">Submit</button>
+<p>{{firstPost}}</p>
+```
+- bind firstPost property to value attribute of textarea element,
+
+```ts
+export class PostsCreateComponent implements OnInit {
+
+  constructor() { }
+  firstPost = 'No Content';
+  ngOnInit(): void {
+  }
+onAddPost(){
+  this.firstPost = 'The user\'s post' ;
+}
+}
+```
+- here v prepopulate the textrea with a value using property binding. on clicking on button
+cause value to be changed.
+
 ---
 
 ## getting user input
