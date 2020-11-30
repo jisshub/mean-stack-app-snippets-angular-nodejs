@@ -284,6 +284,16 @@ ng g component posts/header --skipTests=true
 </p>
 ```
 
+- update the app component template to use header component.
+
+**app.component.html**
+
+```html
+<app-header></app-header>
+<app-posts-create></app-posts-create>
+
+```
+
 ---
 
 ## outputting posts using Expansion Panel Component.
