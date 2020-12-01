@@ -466,9 +466,13 @@ export class Post {
 
 **app.component.ts**
 
+- change type to Post class.
 ```typescript
   // empty array
-  storedPosts:Post[] = [];
+  postToStore: Post[] = [];
+  onPostEmitted(postRec: Post){
+      this.postToStore.push(postRec);
+  }
 ```
 
 - storedArray is an array of type Post.
