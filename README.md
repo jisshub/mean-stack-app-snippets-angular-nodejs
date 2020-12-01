@@ -501,6 +501,14 @@ onAddPost(){
 
 ```
 
+**post-create.component.ts**
+```typescript
+ onAddPost(){
+    const postObj: Post = {title: this.postTitle, content: this.postContent};
+    this.postEvent.emit(postObj);
+  }
+```
+
 - here posts property accept only Post array type data.
 
 ---
