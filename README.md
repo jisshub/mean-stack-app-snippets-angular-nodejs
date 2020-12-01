@@ -501,6 +501,8 @@ onAddPost(){
 
 ```
 
+- here posts property accept only Post array type data.
+
 **post-create.component.ts**
 ```typescript
  onAddPost(){
@@ -508,8 +510,6 @@ onAddPost(){
     this.postEvent.emit(postObj);
   }
 ```
-
-- here posts property accept only Post array type data.
 
 ---
 
