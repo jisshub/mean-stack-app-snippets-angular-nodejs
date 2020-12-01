@@ -547,9 +547,24 @@ onAddPost(){
 </form>
 ```
 
-- now need to get access to values in the form.
-  > For that purpose, v set a **local reference** in the form element- assign ngForm directive to the **local reference** as string - pass that **local reference** as an argument to the method.
+- now need to get access to the form and the values in the form.
+  > For that purpose, v set a **local reference** in the form element- assign ngForm directive to the **local reference** as a string - pass that **local reference** as an argument to the method.
   - by doing this, v get access to form object and its values.
+  
+  **post-create.component.html**
+  ```html
+  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+  ```
+  
+  **post-create.component.ts**
+  ```ts
+  
+    onAddPost(form: NgForm){
+    const postObj: Post = {title: this.postTitle, content: this.postContent};
+    this.postEvent.emit(postObj);
+  }
+  ```
+  - here *onAddPost* method receive a form object of type NgForm.
 
 ---
 
