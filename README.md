@@ -642,16 +642,18 @@ export class PostService {
 **post-list.component.ts**
 
 ```typescript
+  @Input() getPostsArray: Post[] = [];
   ngOnInit(): void {
-    // call get post method here
-    this.postService.getPosts();
-}
+    this.getPostsArray = this.postService.getPosts();
+  }
+
 ```
 
 also do the same in **post-create component** for creating post as well.
 
 - inject _service_ to the constructor.
 
+**post-create.component.ts**
 ```typescript
 constructor(public postService: PostService) { }
   onAddPost(form: NgForm){
