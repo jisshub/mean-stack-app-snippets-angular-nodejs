@@ -662,7 +662,7 @@ export class PostService {
 
 ```typescript  
   constructor(private postService: PostService) { }
-  @Input() getPostsArray: Post[] = [];
+  getPostsArray: Post[] = [];
   ngOnInit(): void {
     this.getPostsArray = this.postService.getPosts();
   }
@@ -692,10 +692,21 @@ constructor(private postService: PostService) { }
 > here the after entering inputs posts wont be listed,
 > since v fetched the post before adding them.
 > to solve it, first remove the bindings in app component.
+
+**app.component.html**
+```html
+<app-header></app-header>
+<main>
+    <app-posts-create></app-posts-create>
+    <app-post-list></app-post-list>
+</main>
+
+
+```
 > next use rxjs package.
 > import **Subject** from rxjs package.
 > create new instance of Subject.
-> call next on that subject instance - pass the post array copy.
+> call next() on that subject instance - pass the copy of post array.
 
 **post.service.ts**
 
@@ -711,7 +722,7 @@ private postUpdated = new Subject<Post[]>();
 ```
 
 > next u have to listen to that subject whenever it emits a post.
-> create new method - call _asObservable()_ on subject and return it.
+> create new method - call _asObservable()_ on subject instance and then return it.
 > it will return an object that v can listen to.
 
 ```typescript
@@ -722,8 +733,8 @@ private postUpdated = new Subject<Post[]>();
   }
 ```
 
-> next v have to subscribe to this listener object from post-list component call **subscribe()**.
-> subscribe takes a function as an argument which will b called when new data is emitted.
+> next v have to subscribe to t his listener object from post-list component call **subscribe()**.
+> subscribe takes a callback  function as an argument which will b called when new data is emitted.
 
 **post-list.component.ts**
 
