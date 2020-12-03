@@ -639,9 +639,29 @@ export class PostService {
 > add OnInIt interface on component.
 > later define _ngOnInIt_ method - call the _getPosts_ method on postService property.
 
+
+**post.service.ts**
+
+```ts
+export class PostService {
+
+  constructor() { }
+  private allPosts: Post[] = [];
+
+  getPosts(){
+    return [...this.allPosts];
+  }
+  addPosts(title: string, content: string){
+    const post: Post = {title, content} ;
+    this.allPosts.push(post);
+  }
+}
+
+```
 **post-list.component.ts**
 
-```typescript
+```typescript  
+  constructor(private postService: PostService) { }
   @Input() getPostsArray: Post[] = [];
   ngOnInit(): void {
     this.getPostsArray = this.postService.getPosts();
@@ -655,14 +675,19 @@ also do the same in **post-create component** for creating post as well.
 
 **post-create.component.ts**
 ```typescript
-constructor(public postService: PostService) { }
-  onAddPost(form: NgForm){
-    // create post object to store title and content
-    const post: Post = {title: form.value.title, content: form.value.postContent};
-    // emit the post object
-    this.postService.addPost(post);
+constructor(private postService: PostService) { }
+  postTitle = '';
+  firstPost = '';
+  postContent = '';
+  ngOnInit(): void {
   }
-```
+  onAddPost(form: NgForm){
+    if (form.invalid) {
+      return;
+    }
+    this.postService.addPosts(form.value.title, form.value.content);
+  }
+  ```
 
 > here the after entering inputs posts wont be listed,
 > since v fetched the post before adding them.
